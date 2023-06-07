@@ -15,8 +15,6 @@ import org.hibernate.annotations.Where;
 @AllArgsConstructor
 @Entity
 @Table(name = "size")
-@SQLDelete(sql = "UPDATE size SET isDeleted = true WHERE size_id = ?")
-@Where(clause = "is_deleted = false")
 @EqualsAndHashCode(callSuper = true)
 public class Size extends AuditableBase {
 
@@ -26,10 +24,6 @@ public class Size extends AuditableBase {
     private long sizeId;
     @Column(name = "size_num", nullable = false)
     private int size_num;
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
-
 
     public long getSizeId() {
         return sizeId;
@@ -47,12 +41,5 @@ public class Size extends AuditableBase {
         this.size_num = size_num;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
 }

@@ -7,8 +7,10 @@ import com.erp.backend.dtos.auth.SearchDto;
 import com.erp.backend.dtos.mappers.ProductDtoMapper;
 import com.erp.backend.entities.Category;
 import com.erp.backend.entities.Product;
+import com.erp.backend.entities.Size;
 import com.erp.backend.repositories.CategoryRepository;
 import com.erp.backend.repositories.ProductRepository;
+import com.erp.backend.repositories.SizeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +18,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,6 +28,8 @@ public class ProductService {
     private ProductDtoMapper mapper;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private SizeRepository sizeRepository;
 
     public Product createProduct(ProductDTO dto){
         Product product = new Product();
@@ -60,10 +63,9 @@ public class ProductService {
         return productDtos;
     }
 
-    public List<ProductDto> getInfoPro(long id){
-        List<Product> list = productRepository.getProductBySize(id);
-        List<ProductDto> productDtos = list.stream().map(mapper::apply).collect(Collectors.toList());
-        return  productDtos;
+    public ProductDto getInfoPro(long id){
+       Product dto = productRepository.findProductById(id);
+       return mapper.apply(dto);
     }
 
     public long getTotalProduct(long id){

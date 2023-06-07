@@ -2,6 +2,7 @@ package com.erp.backend.dtos.mappers;
 
 import com.erp.backend.dtos.OrderDto;
 import com.erp.backend.dtos.OrderDetailDto;
+import com.erp.backend.dtos.ProductDto;
 import com.erp.backend.dtos.SizeDto;
 import com.erp.backend.entities.OrderDetail;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,11 @@ public class OrderDetaikDtoMapper implements Function<OrderDetail, OrderDetailDt
     @Autowired
     private OrderDtoMapper orderDtoMapper;
     @Autowired
-    private SizeDtoMapper sizeDtoMapper;
+    private ProductDtoMapper productDtoMapper;
     @Override
     public OrderDetailDto apply(OrderDetail orderDetail) {
         OrderDto order = orderDtoMapper.apply(orderDetail.getOrder());
-       SizeDto size = sizeDtoMapper.apply(orderDetail.getSize());
-        return new OrderDetailDto(orderDetail.getId(),order,size,orderDetail.getQuanity(),orderDetail.getPrice(),orderDetail.getTotal(),orderDetail.getNote());
+       ProductDto product = productDtoMapper.apply(orderDetail.getProduct());
+        return new OrderDetailDto(orderDetail.getId(),order,product,orderDetail.getQuantity(),orderDetail.getSize(),orderDetail.getTotal(),orderDetail.getNote());
     }
 }

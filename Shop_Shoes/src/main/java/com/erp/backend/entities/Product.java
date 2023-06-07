@@ -4,6 +4,7 @@ package com.erp.backend.entities;
 import javax.persistence.*;
 
 import com.erp.backend.entities.base.AuditableBase;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -18,8 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "products")
-@SQLDelete(sql = "UPDATE products SET isDeleted = true WHERE product_id = ?")
-@Where(clause = "is_deleted = false")
+
 @EqualsAndHashCode(callSuper = true)
 public class Product extends AuditableBase {
     @Id
@@ -29,6 +29,7 @@ public class Product extends AuditableBase {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false, //
             foreignKey = @ForeignKey(name = "FK"))
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Category category;
     @Column(name = "name",length = 255,nullable = false)
     private String name;;
@@ -44,6 +45,7 @@ public class Product extends AuditableBase {
     private Integer quantity;
     @OneToMany(fetch = FetchType.LAZY)
     private List<Review> listComment;
+
     public long getId() {
         return id;
     }

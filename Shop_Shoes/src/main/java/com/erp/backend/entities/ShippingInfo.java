@@ -3,6 +3,7 @@ package com.erp.backend.entities;
 import javax.persistence.*;
 
 import com.erp.backend.entities.base.AuditableBase;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -15,8 +16,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "shipping")
-@SQLDelete(sql = "UPDATE shipping SET isDeleted = true WHERE shpping_id = ?")
-@Where(clause = "is_deleted = false")
 @EqualsAndHashCode(callSuper = true)
 public class ShippingInfo extends AuditableBase {
     @Id
@@ -37,9 +36,6 @@ public class ShippingInfo extends AuditableBase {
     private String huyen;
     @Column(name = "tinh", length = 255, nullable = false)
     private String tinh;
-
-
-
     public Long getId() {
         return id;
     }
@@ -103,5 +99,4 @@ public class ShippingInfo extends AuditableBase {
     public void setTinh(String tinh) {
         this.tinh = tinh;
     }
-
 }

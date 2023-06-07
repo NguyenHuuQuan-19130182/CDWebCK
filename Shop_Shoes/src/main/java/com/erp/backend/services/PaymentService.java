@@ -40,4 +40,7 @@ public class PaymentService {
         paymentRepository.delete(paymentMethod);
         return new Response(200,null,null);
     }
+    public  void deletePayment1(Long idPaymet){
+        paymentRepository.deleteById(idPaymet);
+    }
 }

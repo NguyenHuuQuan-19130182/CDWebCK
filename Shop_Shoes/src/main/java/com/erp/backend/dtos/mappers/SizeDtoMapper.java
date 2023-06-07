@@ -10,11 +10,9 @@ import java.util.function.Function;
 
 @Service
 public class SizeDtoMapper implements Function<Size, SizeDto> {
-    @Autowired
-    private ProductDtoMapper productDtoMapper;
     @Override
     public SizeDto apply(Size size) {
-        ProductDto productDto = productDtoMapper.apply(size.getProduct());
-        return new SizeDto(size.getSizeId(),size.getSize_num(),productDto);
+
+        return new SizeDto(size.getSizeId(),size.getSize_num());
     }
 }

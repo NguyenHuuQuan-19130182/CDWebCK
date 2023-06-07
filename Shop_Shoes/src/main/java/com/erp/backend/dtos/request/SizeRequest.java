@@ -11,5 +11,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SizeRequest {
     private int nSize;
-    private Long idPro;
 }

@@ -48,7 +48,7 @@ public class ProductController {
 
     @GetMapping("/products/{productId}/info-product")
     public ResponseEntity<?> info(@PathVariable(value = "productId") long productId){
-        return ResponseEntity.ok(sizeService.getInfoProduct(productId));
+        return ResponseEntity.ok(productService.getInfoPro(productId));
     }
 
     @GetMapping("/product/page")

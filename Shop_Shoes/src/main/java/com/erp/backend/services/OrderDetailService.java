@@ -7,14 +7,13 @@ import com.erp.backend.dtos.mappers.OrderDtoMapper;
 import com.erp.backend.dtos.request.OrderDetailRequest;
 import com.erp.backend.entities.Order;
 import com.erp.backend.entities.OrderDetail;
-import com.erp.backend.entities.Size;
+import com.erp.backend.entities.Product;
 import com.erp.backend.repositories.OrderDetailRepository;
 import com.erp.backend.repositories.OrderRepository;
-import com.erp.backend.repositories.SizeRepository;
+import com.erp.backend.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,37 +26,21 @@ public class OrderDetailService {
     @Autowired
     private OrderDetaikDtoMapper mapper;
     @Autowired
-    private SizeRepository sizeRepository;
+    private ProductRepository productRepository;
 
-    public OrderDetail createDetail(OrderDetailDTO dto){
-        OrderDetail orderDetail = new OrderDetail();
+    public OrderDetail create(OrderDetailRequest request,Long idOrder){
+        Order order = orderRepository.findById(idOrder).get();
+        Product product = productRepository.findById(request.getProduct()).get();
 
-        Order order = orderRepository.findById(dto.getOrder()).get();
-        Size size = sizeRepository.findById(dto.getSize()).get();
-
-        orderDetail.setOrder(order);
-        orderDetail.setSize(size);
-        orderDetail.setQuanity(dto.getQuantity());
-        orderDetail.setPrice(dto.getPrice());
-
-        orderDetail.setNote(dto.getNote());
-
-        return orderDetailRepository.save(orderDetail);
-    }
-
-    public OrderDetailDto create(@Valid OrderDetailRequest request){
-        Order order = orderRepository.findById(request.getOrder()).get();
-        Size size = sizeRepository.findById(request.getSize()).get();
         OrderDetail orderDetail = OrderDetail.builder()
                 .order(order)
-                .size(size)
-                .price(request.getPrice())
-                .quanity(request.getQuantity())
-                .total(request.getPrice()* request.getQuantity())
+                .product(product)
+                .quantity(request.getQuantity())
+                .size(request.getSize())
+                .total(request.getTotal())
                 .note(request.getNote())
                 .build();
-        OrderDetail save = orderDetailRepository.save(orderDetail);
-        return mapper.apply(save);
+        return orderDetailRepository.save(orderDetail);
     }
 
     public List<OrderDetailDto> getLstOrderByUser(long idUser){

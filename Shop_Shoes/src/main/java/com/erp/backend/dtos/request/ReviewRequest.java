@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReviewRequest {
-    private  Long idUser;
     private Long idPro;
     private  int star;
     private String cmt;

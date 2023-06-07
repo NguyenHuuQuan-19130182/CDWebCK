@@ -1,7 +1,5 @@
 package com.erp.backend.dtos.request;
 
-import com.erp.backend.entities.Size;
-import com.erp.backend.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartRequest {
-    private int quantity;
-    private String size;
+public class ProductRequest {
+    private String name;
+    private Long category;
+    private double price;
+    private double sellprice;
+    private String img;
+    private Integer quantity;
+
 }

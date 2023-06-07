@@ -34,9 +34,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query("select p from Product p where p.name like %?1% ")
     public List<Product> search(String keyword);
 
-    @Query("select p from Product p join Size s on s.product.id = p.id where p.id= ?1")
-    public List<Product> getProductBySize(long id);
-
    Page<Product> findAll(Pageable pageable);
 
 

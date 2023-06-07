@@ -25,8 +25,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "user")
-@SQLDelete(sql = "UPDATE user SET isDeleted = true WHERE id = ?")
-@Where(clause = "is_deleted = false")
 @EqualsAndHashCode(callSuper = true)
 public class User extends AuditableBase implements UserDetails {
 

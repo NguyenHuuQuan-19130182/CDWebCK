@@ -14,8 +14,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "discountcode")
-@SQLDelete(sql = "UPDATE discountcode SET isDeleted = true WHERE id = ?")
-@Where(clause = "is_deleted = false")
 @EqualsAndHashCode(callSuper = true)
 public class DiscountCode extends AuditableBase {
     @Id

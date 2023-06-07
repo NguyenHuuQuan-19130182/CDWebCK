@@ -10,10 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDetailRequest {
-    private Long order;
-    private Long size;
+    private Long product;
     private int quantity;
-    private double price;
     private double total;
     private String note;
+    private int size;
 }

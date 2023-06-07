@@ -30,26 +30,15 @@ public class SizeService {
         return sizeDtoList;
     }
 
-    public List<SizeDto> getInfoProduct(long id){
-        List<Size> list = sizeRepository.getAllSizeById(id);
-        List<SizeDto> sizeDtos = list.stream().map(mapper::apply).collect(Collectors.toList());
-        return sizeDtos;
-    }
     public Size createSize(SizeDTO sizeDTO){
         Size size = new Size();
-        Product product = productRepository.findById(sizeDTO.getProduct()).get();
-
         size.setSize_num(sizeDTO.getNSize());
-        size.setProduct(product);
 
         return sizeRepository.save(size);
     }
     public  SizeDto create(@Valid SizeRequest request){
-        Product product = productRepository.findById(request.getIdPro()).get();
-
         Size size = Size.builder()
                 .size_num(request.getNSize())
-                .product(product)
                 .build();
         Size save = sizeRepository.save(size);
         return mapper.apply(save);

@@ -1,15 +1,13 @@
 package com.erp.backend.controllers;
 
 import com.erp.backend.dtos.auth.OrderDTO;
+import com.erp.backend.dtos.request.OrderRequest;
 import com.erp.backend.entities.Order;
 import com.erp.backend.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -20,9 +18,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/order/create")
-    public Order createOrder(@RequestBody @Valid OrderDTO dto){
-        return orderService.createOrder(dto);
+    @PostMapping("/{idShip}/order/create")
+    public ResponseEntity<?> createOrder(@RequestBody OrderRequest request, @RequestAttribute("email") String email,@PathVariable(value = "idShip")Long idShip){
+        return ResponseEntity.ok(orderService.createOrder(request,email,idShip));
     }
 
 }

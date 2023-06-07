@@ -17,12 +17,9 @@ public class OrderDetailController {
     @Autowired
     private OrderDetailService service;
 
-    @PostMapping("/checkout")
-//    public OrderDetail checkout(@RequestBody @Valid OrderDetailDTO dto){
-//        return service.createDetail(dto);
-//    }
-    public ResponseEntity<?> create(@RequestBody @Valid OrderDetailRequest request){
-        return ResponseEntity.ok(service.create(request));
+    @PostMapping("/checkout/{orderId}")
+    public ResponseEntity<?> create(@RequestBody OrderDetailRequest request,@PathVariable(value = "orderId") Long orderId){
+        return ResponseEntity.ok(service.create(request,orderId));
     }
     @GetMapping("/checkout/{userId}")
     public ResponseEntity<?> getAllOrderByUser(@PathVariable(value = "userId") Long userId){

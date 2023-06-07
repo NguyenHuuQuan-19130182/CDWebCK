@@ -15,8 +15,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "payment")
-@SQLDelete(sql = "UPDATE payment SET isDeleted = true WHERE payment_id = ?")
-@Where(clause = "is_deleted = false")
 @EqualsAndHashCode(callSuper = true)
 public class PaymentMethod extends AuditableBase {
     @Id

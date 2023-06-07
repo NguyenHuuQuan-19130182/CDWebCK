@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class CartDTO {
-    private Long size;
+    private Long product;
     private Long user;
     private int quantity;
 }
