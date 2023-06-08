@@ -14,8 +14,5 @@ public interface CartRepository extends JpaRepository<Cart,Long> {
     @Query("select  c from Cart c where  c.user.id =?1")
     public List<Cart> findByUser(long id);
 
-//    @Modifying
-//    @Query("update Cart  c set c.quantity = :quantity where c.id = :id")
-//    public void updateCart(long id,int quantity);
 
 }

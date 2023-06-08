@@ -1,5 +1,6 @@
 package com.erp.backend.dtos.request;
 
+import com.erp.backend.entities.ShippingInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderRequest {
-    private Long idShip;
     private Long idPayment;
     private String note;
     private String state;

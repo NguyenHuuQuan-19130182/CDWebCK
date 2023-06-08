@@ -14,7 +14,6 @@ import com.erp.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class OrderService {
     @Autowired
@@ -28,9 +27,9 @@ public class OrderService {
     @Autowired
     private ShippingRepository shippingRepository;
 
-    public Order createOrder(OrderRequest request,String email) {
+    public Order createOrder(OrderRequest request,String email,Long idShip) {
         User user = userRepository.findByEmail(email).get();
-        ShippingInfo shippingInfo = shippingRepository.findById(request.getIdShip()).get();
+        ShippingInfo shippingInfo = shippingRepository.findById(idShip).get();
         PaymentMethod paymentMethod = paymentRepository.findById(request.getIdPayment()).get();
         Order order = Order.builder()
                 .account(user)
