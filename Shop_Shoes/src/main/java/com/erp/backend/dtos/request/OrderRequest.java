@@ -14,4 +14,11 @@ public class OrderRequest {
     private Long idPayment;
     private String note;
     private String state;
+    private String email;
+    private String name;
+    private String phone;
+    private String address;
+    private String xa;
+    private String huyen;
+    private String tinh;
 }
