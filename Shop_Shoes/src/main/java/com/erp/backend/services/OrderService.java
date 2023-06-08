@@ -28,9 +28,9 @@ public class OrderService {
     @Autowired
     private ShippingRepository shippingRepository;
 
-    public Order createOrder(OrderRequest request,String email,Long IdShip) {
+    public Order createOrder(OrderRequest request,String email) {
         User user = userRepository.findByEmail(email).get();
-        ShippingInfo shippingInfo = shippingRepository.findById(IdShip).get();
+        ShippingInfo shippingInfo = shippingRepository.findById(request.getIdShip()).get();
         PaymentMethod paymentMethod = paymentRepository.findById(request.getIdPayment()).get();
         Order order = Order.builder()
                 .account(user)

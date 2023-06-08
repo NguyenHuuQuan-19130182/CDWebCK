@@ -20,6 +20,6 @@ public class CartDtoMapper implements Function<Cart, CartDto> {
     public CartDto apply(Cart cart) {
         ProductDto product =productDtoMapper.apply(cart.getProduct());
         UserDto user = userDTOMapper.apply(cart.getUser());
-        return new CartDto(cart.getId(),product,user,cart.getQuantity());
+        return new CartDto(cart.getId(),product,user,cart.getQuantity(),cart.getSize());
     }
 }

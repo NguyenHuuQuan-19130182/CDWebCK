@@ -1,6 +1,7 @@
 package com.erp.backend.controllers;
 
 import com.erp.backend.dtos.request.CartRequest;
+import com.erp.backend.dtos.request.UpdateCartRequest;
 import com.erp.backend.entities.Cart;
 import com.erp.backend.services.CartService;
 import com.erp.backend.services.ProductService;
@@ -11,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/")
@@ -31,15 +32,16 @@ public class CartController {
     }
 
     @DeleteMapping("cart/remove/{cartId}")
-//    public ResponseEntity<?> removeCart(@PathVariable(value = "cartId") long cartId){
-//       return ResponseEntity.ok(cartService.removeCart(cartId));
-//    }
     public void remove(@PathVariable(value = "cartId") long cartId){
         cartService.removeCart(cartId);
     }
 
     @GetMapping("/cart/{userId}")
-    public ResponseEntity<?> getAllCartOfUser(@PathVariable(value = "userId") long userId){
+    public ResponseEntity<?> getAllCartOfUser(@PathVariable(value = "userId") long userId) {
         return ResponseEntity.ok(cartService.getAllProToCartByUser(userId));
+    }
+    @PostMapping("/cart/update")
+    public ResponseEntity<?> updateCart(@Valid @RequestBody UpdateCartRequest request){
+        return ResponseEntity.ok(cartService.updateCart(request));
     }
 }

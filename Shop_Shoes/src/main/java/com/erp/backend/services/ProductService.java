@@ -2,6 +2,7 @@ package com.erp.backend.services;
 
 
 import com.erp.backend.dtos.ProductDto;
+import com.erp.backend.dtos.SortProductDto;
 import com.erp.backend.dtos.auth.ProductDTO;
 import com.erp.backend.dtos.auth.SearchDto;
 import com.erp.backend.dtos.mappers.ProductDtoMapper;
@@ -74,7 +75,7 @@ public class ProductService {
     public long getTotalProductByCategory(long id){
         return  productRepository.countProductByIdCaregory(id);
     }
-    public List<Product> sortProducts(String sortType) {
+    public List<Product> sortProducts(SortProductDto sortType) {
         if (sortType.equals("name_asc")) {
             return  productRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
         } else if (sortType.equals("name_desc")) {

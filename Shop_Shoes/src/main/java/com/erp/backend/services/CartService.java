@@ -4,6 +4,7 @@ package com.erp.backend.services;
 import com.erp.backend.dtos.CartDto;
 import com.erp.backend.dtos.mappers.CartDtoMapper;
 import com.erp.backend.dtos.request.CartRequest;
+import com.erp.backend.dtos.request.UpdateCartRequest;
 import com.erp.backend.entities.Cart;
 import com.erp.backend.entities.Product;
 import com.erp.backend.entities.User;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -39,6 +41,14 @@ public class CartService {
                 .build();
         Cart save = cartRepository.save(cart);
        return mapper.apply(save);
+    }
+
+    public  CartDto updateCart(UpdateCartRequest request){
+        Optional<Cart> optionalCart = cartRepository.findById(request.getId());
+        Cart cart =  optionalCart.get();
+        cart.setQuantity(request.getQuantity());
+        Cart save = cartRepository.save(cart);
+        return  mapper.apply(save);
     }
 
     public void removeCart(long id) {

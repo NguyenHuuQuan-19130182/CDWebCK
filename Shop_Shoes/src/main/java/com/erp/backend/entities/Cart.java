@@ -19,7 +19,7 @@ public class Cart  extends AuditableBase {
     private Long id;
     @OneToOne
     private Product product;
-  @OneToOne
+    @OneToOne
     private User user;
     private int quantity;
     private String size;

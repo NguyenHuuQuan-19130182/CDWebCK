@@ -1,5 +1,6 @@
 package com.erp.backend.controllers;
 
+import com.erp.backend.dtos.SortProductDto;
 import com.erp.backend.dtos.auth.ProductDTO;
 import com.erp.backend.dtos.auth.SearchDto;
 import com.erp.backend.entities.Product;
@@ -55,5 +56,8 @@ public class ProductController {
     public ResponseEntity<?> getAllPageArticle(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(productService.getAllProductPage(page,size));
     }
-
+    @PostMapping("/product/sort")
+    public ResponseEntity<?> sortProduct(@RequestBody SortProductDto sortType){
+        return ResponseEntity.ok(productService.sortProducts(sortType));
+    }
 }

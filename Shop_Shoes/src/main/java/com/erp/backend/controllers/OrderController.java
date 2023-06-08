@@ -18,9 +18,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/{idShip}/order/create")
-    public ResponseEntity<?> createOrder(@RequestBody OrderRequest request, @RequestAttribute("email") String email,@PathVariable(value = "idShip")Long idShip){
-        return ResponseEntity.ok(orderService.createOrder(request,email,idShip));
+    @PostMapping("/order/create")
+    public ResponseEntity<?> createOrder(@RequestBody OrderRequest request, @RequestAttribute("email") String email){
+        return ResponseEntity.ok(orderService.createOrder(request,email));
     }
 
 }
