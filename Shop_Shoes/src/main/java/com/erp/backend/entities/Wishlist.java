@@ -1,49 +1,22 @@
 package com.erp.backend.entities;
 
 public class Wishlist {
-    private long id;
-    private String img;
-    private String name;
-    private double price;
-    private double sellPrice;
+    private Product product;
+    private User user;
 
-    public long getId() {
-        return id;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public String getImg() {
-        return img;
+    public User getUser() {
+        return user;
     }
 
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getSellPrice() {
-        return sellPrice;
-    }
-
-    public void setSellPrice(double sellPrice) {
-        this.sellPrice = sellPrice;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -56,8 +56,29 @@ public class ProductController {
     public ResponseEntity<?> getAllPageArticle(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(productService.getAllProductPage(page,size));
     }
+
     @PostMapping("/product/sort")
     public ResponseEntity<?> sortProduct(@RequestBody SortProductDto sortType){
         return ResponseEntity.ok(productService.sortProducts(sortType));
+    }
+
+    @GetMapping("/product/sort/by-name-asc")
+    public ResponseEntity<?> getProductsByNameAsc(){
+        return ResponseEntity.ok(productService.getProductsByNameAsc());
+    }
+
+    @GetMapping("/product/sort/by-name-desc")
+    public ResponseEntity<?> getProductsByNameDesc(){
+        return ResponseEntity.ok(productService.getProductsByNameDesc());
+    }
+
+    @GetMapping("/product/sort/by-price-asc")
+    public ResponseEntity<?> getProductsByPriceAsc(){
+        return ResponseEntity.ok(productService.getProductsByPriceAsc());
+    }
+
+    @GetMapping("/product/sort/by-price-desc")
+    public ResponseEntity<?> getProductsByPriceDesc(){
+        return ResponseEntity.ok(productService.getProductsByPriceDesc());
     }
 }

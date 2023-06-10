@@ -24,7 +24,7 @@ public class Order extends AuditableBase {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", length = 50)
     private long id;
-    @OneToOne(fetch = FetchType.LAZY,cascade =CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private ShippingInfo shippingInfo;
     @OneToOne(fetch = FetchType.LAZY,cascade =CascadeType.REMOVE)
