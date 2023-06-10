@@ -48,6 +48,7 @@ public class OrderService {
                 .paymentMethod(paymentMethod)
                 .note(request.getNote())
                 .state(request.getState())
+               .totalOrder(request.getTotalOrder())
                 .build();
     Order save = orderRepository.save(order);
     return orderDtoMapper.apply(save);
