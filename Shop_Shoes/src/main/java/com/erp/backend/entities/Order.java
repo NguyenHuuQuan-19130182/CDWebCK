@@ -37,7 +37,8 @@ public class Order extends AuditableBase {
     private String state;
     @Column(name = "note", length = 128)
     private String note;
-
+    @Column(name = "total_Order")
+    private  double totalOrder;
     public long getId() {
         return id;
     }
@@ -86,5 +87,12 @@ public class Order extends AuditableBase {
 
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+     public double getTotalOrder() {
+        return totalOrder;
+    }
+
+    public void setTotalOrder(double totalOrder) {
+        this.totalOrder = totalOrder;
     }
 }
