@@ -21,4 +21,5 @@ public class OrderRequest {
     private String xa;
     private String huyen;
     private String tinh;
+    private double totalOrder
 }
