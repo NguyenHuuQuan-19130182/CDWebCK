@@ -23,6 +23,6 @@ public class OrderDtoMapper implements Function<Order, OrderDto> {
         ShipDto ship = shipDtoMapper.apply(order.getShippingInfo());
         UserDto user= userDTOMapper.apply(order.getAccount());
         PaymentDto payment = paymentDtoMapper.apply(order.getPaymentMethod());
-        return new OrderDto(order.getId(),ship,user,payment,order.getState(),order.getNote());
+        return new OrderDto(order.getId(),ship,user,payment,order.getState(),order.getNote(),,order.getTotalOrder());
     }
 }
