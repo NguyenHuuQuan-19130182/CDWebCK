@@ -25,4 +25,8 @@ public class OrderDetailController {
     public ResponseEntity<?> getAllOrderByUser(@PathVariable(value = "userId") Long userId){
         return ResponseEntity.ok(service.getLstOrderByUser(userId));
     }
+    @GetMapping("/checkout/order/{orderId}")
+    public ResponseEntity<?> getAllOrderByOrder(@PathVariable(value = "orderId") Long orderId){
+        return ResponseEntity.ok(service.getOrderDetailByOrder(orderId));
+    }
 }

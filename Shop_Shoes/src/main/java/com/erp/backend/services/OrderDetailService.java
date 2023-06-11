@@ -49,4 +49,9 @@ public class OrderDetailService {
         return detailDtos;
     }
 
+    public List<OrderDetailDto> getOrderDetailByOrder(long idOrder){
+        List<OrderDetail> list = orderDetailRepository.getOrderDetailByOrder(idOrder);
+        List<OrderDetailDto>  detailDtos = list.stream().map(mapper::apply).collect(Collectors.toList());
+        return detailDtos;
+    }
 }

@@ -88,7 +88,8 @@ public class Order extends AuditableBase {
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
-     public double getTotalOrder() {
+
+    public double getTotalOrder() {
         return totalOrder;
     }
 

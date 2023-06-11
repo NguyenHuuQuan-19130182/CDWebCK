@@ -14,6 +14,9 @@ import com.erp.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class OrderService {
     @Autowired
@@ -48,13 +51,19 @@ public class OrderService {
                 .paymentMethod(paymentMethod)
                 .note(request.getNote())
                 .state(request.getState())
-               .totalOrder(request.getTotalOrder())
+                .totalOrder(request.getTotalOrder())
                 .build();
     Order save = orderRepository.save(order);
     return orderDtoMapper.apply(save);
     }
+
     public OrderDto getAllOrderById(long id){
         return orderDtoMapper.apply(orderRepository.findById(id).get());
     }
 
+    public List<OrderDto> getAllOrderByUser(Long idUser){
+        List<Order> orderList = orderRepository.getOrderByUser(idUser);
+        List<OrderDto> orderDtos = orderList.stream().map(orderDtoMapper::apply).collect(Collectors.toList());
+        return orderDtos;
+    }
 }
