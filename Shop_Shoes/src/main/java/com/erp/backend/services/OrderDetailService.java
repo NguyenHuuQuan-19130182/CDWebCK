@@ -8,6 +8,7 @@ import com.erp.backend.dtos.request.OrderDetailRequest;
 import com.erp.backend.entities.Order;
 import com.erp.backend.entities.OrderDetail;
 import com.erp.backend.entities.Product;
+import com.erp.backend.models.Response;
 import com.erp.backend.repositories.OrderDetailRepository;
 import com.erp.backend.repositories.OrderRepository;
 import com.erp.backend.repositories.ProductRepository;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,5 +55,12 @@ public class OrderDetailService {
         List<OrderDetail> list = orderDetailRepository.getOrderDetailByOrder(idOrder);
         List<OrderDetailDto>  detailDtos = list.stream().map(mapper::apply).collect(Collectors.toList());
         return detailDtos;
+    }
+
+    public Response deleteOrderDetail(Long orderid){
+        Optional<OrderDetail> optionalOrderDetail = orderDetailRepository.deleteByOrder(orderid);
+        OrderDetail orderDetail = optionalOrderDetail.get();
+        orderDetailRepository.delete(orderDetail);
+        return new Response(200,null,null);
     }
 }

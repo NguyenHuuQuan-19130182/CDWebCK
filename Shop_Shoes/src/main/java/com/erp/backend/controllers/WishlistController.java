@@ -34,7 +34,6 @@ public class WishlistController {
         wishlist.setProduct(product);
         wishlist.setUser(user);
         wishlists.add(wishlist);
-
         return wishlist;
     }
 
@@ -48,5 +47,9 @@ public class WishlistController {
         item.ifPresent(wishlists::remove);
 
         return ResponseEntity.ok("Xóa thành công");
+    }
+    @GetMapping("/wishlist/getAll")
+    public ResponseEntity<?> getAll(){
+        return ResponseEntity.ok(wishlists);
     }
 }

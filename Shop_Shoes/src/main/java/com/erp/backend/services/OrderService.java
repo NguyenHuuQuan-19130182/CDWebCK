@@ -62,7 +62,17 @@ public class OrderService {
     }
 
     public List<OrderDto> getAllOrderByUser(Long idUser){
-        List<Order> orderList = orderRepository.getOrderByUser(idUser);
+       List<Order> orderList = orderRepository.getOrderByUser(idUser);
+        List<OrderDto> orderDtos = orderList.stream().map(orderDtoMapper::apply).collect(Collectors.toList());
+        return orderDtos;
+    }
+
+    public void  deleteOrder(long idOrder){
+        orderRepository.deleteById(idOrder);
+    }
+
+    public  List<OrderDto> getOrderState(String state){
+        List<Order> orderList = orderRepository.getOrderByState(state);
         List<OrderDto> orderDtos = orderList.stream().map(orderDtoMapper::apply).collect(Collectors.toList());
         return orderDtos;
     }

@@ -27,4 +27,14 @@ public class OrderController {
     public ResponseEntity<?> getAllOrderByUser(@PathVariable(value = "userId") Long userId){
         return ResponseEntity.ok(orderService.getAllOrderByUser(userId));
     }
+
+    @DeleteMapping("delete/{orderId}")
+    public void deleteOrder(@PathVariable("orderId")Long orderId){
+       orderService.deleteOrder(orderId);
+    }
+
+    @GetMapping("/order/state/{state}")
+    public ResponseEntity<?> getAllOrderByState(@PathVariable(value = "state") String state){
+        return ResponseEntity.ok(orderService.getOrderState(state));
+    }
 }

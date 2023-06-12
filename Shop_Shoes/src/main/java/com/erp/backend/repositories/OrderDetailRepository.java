@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
@@ -15,4 +16,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
     @Query("select o from OrderDetail o where o.order.id = ?1")
     public List<OrderDetail> getOrderDetailByOrder(Long idOrder);
 
+    @Query("select o from OrderDetail o where o.order.id = ?1")
+    Optional<OrderDetail> deleteByOrder(long id);
 }

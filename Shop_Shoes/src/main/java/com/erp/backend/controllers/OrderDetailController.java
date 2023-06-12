@@ -29,4 +29,8 @@ public class OrderDetailController {
     public ResponseEntity<?> getAllOrderByOrder(@PathVariable(value = "orderId") Long orderId){
         return ResponseEntity.ok(service.getOrderDetailByOrder(orderId));
     }
+    @DeleteMapping("/order-detail/delete/{id}")
+    public ResponseEntity<?> deleteOrderDetail(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.ok(service.deleteOrderDetail(id));
+    }
 }
